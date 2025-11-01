@@ -1,0 +1,10 @@
+Caption image: 0.45s
+Transcribe audio: 0.60s
+Transcribe and summarize audio: 0.85s
+Execute code: 0.30s
+Browser Action: 1.20s
+Caption image: 0.48s
+Transcribe audio: 0.62s
+Transcribe and summarize audio: 0.87s
+Execute code: 0.32s
+Browser Action: 1.25s
