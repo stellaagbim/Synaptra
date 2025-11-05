@@ -1,23 +1,64 @@
-// src/components/LiveLatencyCard.jsx
 import React from "react";
-import { Paper, Typography } from "@mui/material";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { Zap } from "lucide-react";
 
-export default function LiveLatencyCard() {
+export default function LatencyCard({ latency = 0 }) {
+  const getStatus = (ms) => {
+    if (ms < 100) return "ultra-fast";
+    if (ms < 300) return "optimal";
+    if (ms < 600) return "moderate";
+    return "delayed";
+  };
+
+  const status = getStatus(latency);
+
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.6 }}
+      className="latency glass"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
     >
-      <Paper className="p-5 w-64 text-center border border-white/10 bg-white/5 backdrop-blur-md">
-        <Typography variant="body2" color="text.secondary">
-          Live Latency
-        </Typography>
-        <Typography variant="h5" color="primary" sx={{ fontWeight: 700 }}>
-          84 ms
-        </Typography>
-      </Paper>
+      <div className="label">System Latency</div>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={latency}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.25 }}
+          className="value"
+        >
+          {latency ? `${latency} ms` : "—"}
+        </motion.div>
+      </AnimatePresence>
+
+      <motion.div
+        className="status"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
+        style={{
+          marginTop: "6px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "6px",
+          color:
+            status === "ultra-fast"
+              ? "#5ee7ff"
+              : status === "optimal"
+              ? "#8dffab"
+              : status === "moderate"
+              ? "#fcd34d"
+              : "#f87171",
+          fontWeight: 600,
+          letterSpacing: "0.3px",
+        }}
+      >
+        <Zap size={14} /> {status.toUpperCase()}
+      </motion.div>
     </motion.div>
   );
 }
