@@ -1,37 +1,43 @@
-// src/theme.js
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
     mode: "dark",
-    primary: { main: "#00E5FF" },
-    secondary: { main: "#8B5CF6" },
+    primary: { main: "#5ee7ff" },
+    secondary: { main: "#7c3aed" },
     background: {
-      default: "#050A1F",
-      paper: "rgba(255,255,255,0.05)",
+      default: "#0b0f1a",
+      paper: "rgba(255,255,255,0.06)",
     },
     divider: "rgba(255,255,255,0.12)",
     text: {
-      primary: "#E5E7EB",
-      secondary: "#9CA3AF",
+      primary: "rgba(255,255,255,0.92)",
+      secondary: "rgba(255,255,255,0.72)",
     },
   },
+  shape: { borderRadius: 16 },
   typography: {
     fontFamily:
-      "'Inter Variable', 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif",
-    h1: { fontWeight: 800, letterSpacing: "-0.02em" },
-    h2: { fontWeight: 700 },
-    h6: { fontWeight: 500 },
-    button: { textTransform: "none", fontWeight: 600 },
+      "'Inter Variable', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto",
+    h1: { fontWeight: 900, letterSpacing: "-0.02em" },
+    h2: { fontWeight: 800, letterSpacing: "-0.01em" },
+    button: { textTransform: "none", fontWeight: 700, letterSpacing: ".2px" },
   },
-  shape: { borderRadius: 14 },
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          background:
+            "radial-gradient(circle at top, #0d1528 0%, #06080f 60%, #000 100%)",
+        },
+      },
+    },
     MuiPaper: {
       styleOverrides: {
         root: {
-          backdropFilter: "blur(15px)",
-          border: "1px solid rgba(255,255,255,0.08)",
-          boxShadow: "0 15px 40px rgba(0,0,0,0.4)",
+          backdropFilter: "blur(10px)",
+          border: "1px solid rgba(255,255,255,0.10)",
+          boxShadow: "0 24px 80px rgba(0,0,0,0.35)",
         },
       },
     },
@@ -39,12 +45,6 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 12,
-          background: "linear-gradient(90deg,#00E5FF,#8B5CF6)",
-          color: "#fff",
-          "&:hover": {
-            opacity: 0.9,
-            boxShadow: "0 0 20px rgba(139,92,246,0.5)",
-          },
         },
       },
     },
