@@ -1,0 +1,5 @@
+venv/
+backend/venv/
+*.dll
+*.pyd
+__pycache__/
