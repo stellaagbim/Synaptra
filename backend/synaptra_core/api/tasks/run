@@ -1,0 +1,20 @@
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel
+
+from synaptra_core.agent.controller import run_agent_task
+
+router = APIRouter(prefix="/api/tasks", tags=["tasks"])
+
+
+class TaskRequest(BaseModel):
+    goal: str
+
+
+@router.post("/run")
+async def run_task(req: TaskRequest):
+    """Run a Synaptra agent task."""
+    try:
+        result = await run_agent_task(req.goal)
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
